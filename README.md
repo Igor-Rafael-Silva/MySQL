@@ -1,88 +1,95 @@
-# MySQL
-Alguns códigos aprendidos de MySQL
+# MySQL - Comandos Básicos
 
-
-# Banco de Dados - Escola
-
-## Comandos utilizados
-
-### 1. Entrar no MySQL
+##  Criar banco de dados
 
 ```sql
-mysql -u root
+CREATE DATABASE escola;
 ```
 
-Entra no MySQL usando o usuário `root`.
-
-### 2. Criar o banco
+Cria um novo banco de dados.
 
 ```sql
-CREATE DATABASE escola_db;
+USE escola;
 ```
 
-Cria o banco de dados chamado `escola_db`.
+Seleciona o banco que será utilizado.
 
-### 3. Mostrar os bancos
-
-```sql
-SHOW DATABASES;
-```
-
-Mostra todos os bancos de dados existentes.
-
-### 4. Selecionar o banco
+## Criar tabela
 
 ```sql
-USE escola_db;
-```
-
-Seleciona o banco `escola_db` para trabalhar nele.
-
-### 5. Criar a tabela
-
-```sql
-CREATE TABLE aluno (
-    matricula INT,
-    nome VARCHAR(50),
-    cpf VARCHAR(11)
+CREATE TABLE alunos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100),
+    curso VARCHAR(50)
 );
 ```
 
-Cria a tabela `aluno` com matrícula, nome e CPF.
+Cria a tabela `alunos`.
 
-### 6. Mostrar as tabelas
+* `INT` → número inteiro.
+* `PRIMARY KEY` → identifica cada registro.
+* `AUTO_INCREMENT` → gera o ID automaticamente.
+* `VARCHAR` → armazena textos.
 
-```sql
-SHOW TABLES;
-```
-
-Mostra as tabelas existentes no banco selecionado.
-
-### 7. Ver a estrutura da tabela
+##  Inserir dados
 
 ```sql
-DESCRIBE aluno;
+INSERT INTO alunos (nome, curso)
+VALUES ('Ana Souza', 'ADS');
 ```
 
-Mostra as colunas, tipos de dados e outras informações da tabela.
+Adiciona um novo aluno na tabela.
 
-### 8. Inserir um aluno
+## Consultar dados
 
 ```sql
-INSERT INTO aluno
-(matricula, nome, cpf)
-VALUES
-(1, 'Valdir Pouca Telha', '12345678970');
+SELECT * FROM alunos;
 ```
 
-Adiciona um aluno na tabela.
+Mostra todas as colunas e registros da tabela.
 
-### 9. Consultar os alunos
+Também podemos filtrar:
 
 ```sql
-SELECT * FROM aluno;
+SELECT nome FROM alunos
+WHERE curso = 'ADS';
 ```
 
-Mostra todos os dados cadastrados na tabela.
+Mostra apenas o nome dos alunos que fazem ADS.
+
+## Atualizar dados
+
+```sql
+UPDATE alunos
+SET curso = 'Redes'
+WHERE nome = 'Ana Souza';
+```
+
+Altera o curso da Ana.
+
+
+## Excluir dados
+
+```sql
+DELETE FROM alunos
+WHERE nome = 'Carla Reis';
+```
+
+Remove o registro da Carla.
+
+
+## Resumo
+
+| Comando         | Função             |
+| --------------- | ------------------ |
+| CREATE DATABASE | Cria um banco      |
+| USE             | Seleciona um banco |
+| CREATE TABLE    | Cria uma tabela    |
+| INSERT          | Adiciona dados     |
+| SELECT          | Consulta dados     |
+| UPDATE          | Atualiza dados     |
+| DELETE          | Remove dados       |
+
+
 
 
